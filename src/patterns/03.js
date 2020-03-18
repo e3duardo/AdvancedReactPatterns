@@ -6,7 +6,8 @@ import React, {
   createContext,
   useMemo,
   useContext,
-  useEffect
+  useEffect,
+  useRef
 } from "react";
 import styles from "./index.css";
 import mojs from "mo-js";
@@ -138,8 +139,13 @@ const MediumClap = ({ children, onClap }) => {
     clatpTotalEl: clapTotalRef
   });
 
+  const componentJustMounted = useRef(true);
+
   useEffect(() => {
-    onClap && onClap(clapState);
+    if (!componentJustMounted.current) {
+      onClap && onClap(clapState);
+    }
+    componentJustMounted.current = false;
   }, [count]);
 
   const handleClapClick = () => {
@@ -229,7 +235,10 @@ const Usage = () => {
         <MediumClap.Count />
         <MediumClap.Total />
       </MediumClap>
-      <div className={styles.info}>{`You have clapped ${count}`}</div>
+
+      {!!count && (
+        <div className={styles.info}>{`You have clapped ${count} times`}</div>
+      )}
     </div>
   );
 };
