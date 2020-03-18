@@ -1,6 +1,6 @@
-import React from 'react'
-import styled from 'styled-components'
-import { Link } from '@reach/router'
+import React from "react";
+import styled from "styled-components";
+import { Link } from "@reach/router";
 
 import {
   HEADER_ALLOWANCE,
@@ -8,10 +8,10 @@ import {
   LIGHTER_GREY,
   GREY,
   zIndex
-} from './utils/constants'
+} from "./utils/constants";
 
-import Logo from './assets/logo_white.svg'
-import { media } from './content/StyledContent'
+import Logo from "./assets/logo_white.svg";
+import { media } from "./content/StyledContent";
 
 const StyledSidebar = styled.div`
   background: #0f0f14;
@@ -27,7 +27,7 @@ const StyledSidebar = styled.div`
     position: initial;
     box-shadow: none;
   `}
-`
+`;
 
 const StyledLogoArea = styled.div`
   position: relative;
@@ -37,7 +37,7 @@ const StyledLogoArea = styled.div`
     position: absolute;
     bottom: 0;
   }
-`
+`;
 
 const StyledNavigation = styled.nav`
   padding: 0;
@@ -67,31 +67,34 @@ const StyledNavigation = styled.nav`
       outline: ${() => `1px solid ${GREY}`};
     }
   `}
-`
+`;
 
 const LogoArea = () => {
   return (
     <StyledLogoArea>
-      <Logo style={{ width: '43%' }} />
+      {/* <Logo style={{ width: '43%' }} /> */}
+      <div style={{ padding: "20px 15px" }}>
+        <b style={{ color: "white" }}>Eduardo</b> Santos
+      </div>
     </StyledLogoArea>
-  )
-}
+  );
+};
 
 const NAV_ITEMS = [
-  'Home',
-  'The Medium Clap',
-  'Compound Components',
-  'Reusable Styles',
-  'Control Props',
-  'Custom Hooks',
-  'Props Collection',
-  'Prop Getters',
-  'State Initializers',
-  'State Reducers'
-]
+  "Home",
+  "The Medium Clap",
+  "Compound Components",
+  "Reusable Styles",
+  "Control Props",
+  "Custom Hooks",
+  "Props Collection",
+  "Prop Getters",
+  "State Initializers",
+  "State Reducers"
+];
 
 const Sidebar = ({ setShowSidebar }) => {
-  const handleClick = () => setShowSidebar(v => !v)
+  const handleClick = () => setShowSidebar(v => !v);
   return (
     <StyledSidebar onClick={handleClick}>
       <LogoArea />
@@ -100,17 +103,17 @@ const Sidebar = ({ setShowSidebar }) => {
           <Link
             getProps={({ isCurrent }) => ({
               style: {
-                background: isCurrent ? GREY : ''
+                background: isCurrent ? GREY : ""
               }
             })}
             key={item}
             to={
-              item === 'Home'
-                ? '/'
+              item === "Home"
+                ? "/"
                 : item
-                  .toLowerCase()
-                  .split(' ')
-                  .join('-')
+                    .toLowerCase()
+                    .split(" ")
+                    .join("-")
             }
           >
             {item}
@@ -118,7 +121,7 @@ const Sidebar = ({ setShowSidebar }) => {
         ))}
       </StyledNavigation>
     </StyledSidebar>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;
