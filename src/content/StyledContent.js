@@ -1,7 +1,7 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
-import ArrowRed from '../assets/arrow_red.svg'
-import ArrowBlue from '../assets/arrow_blue.svg'
+import React from "react";
+import styled, { css } from "styled-components";
+import ArrowRed from "../assets/arrow_red.svg";
+import ArrowBlue from "../assets/arrow_blue.svg";
 
 import {
   HEADER_ALLOWANCE,
@@ -12,26 +12,26 @@ import {
   PALE_BLUE,
   OX,
   PALE_RED
-} from '../utils/constants'
+} from "../utils/constants";
 
 export const SCREEN_SIZES = {
   sm: 576,
   md: 720,
   lg: 960,
   xl: 1140
-}
+};
 
 export const media = Object.keys(SCREEN_SIZES).reduce((accumulator, label) => {
   // use em in breakpoints to work properly cross-browser and support users
   // changing their browsers font-size: https://zellwk.com/blog/media-query-units/
-  const emSize = SCREEN_SIZES[label] / 16
+  const emSize = SCREEN_SIZES[label] / 16;
   accumulator[label] = (...args) => css`
     @media (min-width: ${emSize}em) {
       ${css(...args)};
     }
-  `
-  return accumulator
-}, {})
+  `;
+  return accumulator;
+}, {});
 
 export const StyledFloatingBtn = styled.button`
   background: ${() => PALE_RED};
@@ -50,13 +50,13 @@ export const StyledFloatingBtn = styled.button`
   border: 0;
   outline: 0;
   color: #fff;
-`
+`;
 
 export const Header = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: ${() => `${SIDEBAR_LEFT_PADDING}vw`};
-`
+`;
 
 export const StyledInfoContainer = styled.aside`
   overflow: hidden;
@@ -79,7 +79,7 @@ export const StyledInfoContainer = styled.aside`
     left: initial;
     border: 1px solid white;
 `}
-`
+`;
 
 export const StyledContentContainer = styled.div`
   padding: ${() => `${HEADER_ALLOWANCE}vh ${SIDEBAR_LEFT_PADDING}vw`};
@@ -87,14 +87,14 @@ export const StyledContentContainer = styled.div`
   ${media.md`
     padding: ${() => `${HEADER_ALLOWANCE}vh ${SIDEBAR_LEFT_PADDING}vw 0`};
   `}
-`
+`;
 
 export const H1 = styled.h1`
   font-size: 1.2rem;
   color: ${() => `${ASH}`};
   padding: 0;
   margin: 0;
-`
+`;
 
 export const Columns = styled.div`
   display: flex;
@@ -104,15 +104,15 @@ export const Columns = styled.div`
     display: flex;
     flex-direction: row;
   `}
-`
+`;
 
 export const Column = styled.div`
   ${media.md` 
     width: ${() => `${COLUMN_WIDTH}vw`}
     margin-left: ${({ leftGap }) =>
-      leftGap ? `${SIDEBAR_LEFT_PADDING}vw` : 'initial'};
+      leftGap ? `${SIDEBAR_LEFT_PADDING}vw` : "initial"};
   `}
-`
+`;
 
 export const DisplayBox = styled.div`
   position: relative;
@@ -125,6 +125,7 @@ export const DisplayBox = styled.div`
   border-radius: 16px;
   background-color: ${() => `${LIGHT_ASH}`};
   text-align: center;
+  overflow: hidden;
 
   > svg {
     position: relative;
@@ -143,7 +144,7 @@ export const DisplayBox = styled.div`
   pre {
     max-width: ${() => `${COLUMN_WIDTH - 2}vw`};
   }
-`
+`;
 
 const TaglineContainer = styled.div`
   text-align: right;
@@ -161,12 +162,12 @@ const TaglineContainer = styled.div`
       top: -13px;
     }
   `};
-`
+`;
 
 const TagLine = styled.p`
   padding: 0;
   margin: 0;
-  font-family: 'Kalam';
+  font-family: "Kalam";
   font-weight: 300;
   transform: rotateZ(-2.75deg) translateY(6px) translateX(-15px);
   color: ${({ isPrimary }) => (isPrimary ? OX : PALE_BLUE)};
@@ -174,7 +175,7 @@ const TagLine = styled.p`
   ${media.md`
     transform: rotateZ(-4.75deg) translateY(-15px);
   `}
-`
+`;
 
 const Center = styled.div`
   display: flex;
@@ -182,32 +183,32 @@ const Center = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 25vh;
-`
+`;
 
 export const Box = ({ isPrimary, children, note, m }) => {
   return (
     <DisplayBox m={m}>
       <TaglineContainer>
         <TagLine isPrimary={isPrimary}>
-          {isPrimary ? 'Before' : 'After'}
+          {isPrimary ? "Before" : "After"}
         </TagLine>
         {isPrimary ? (
-          <ArrowRed style={{ width: '80px' }} />
+          <ArrowRed style={{ width: "80px" }} />
         ) : (
-          <ArrowBlue style={{ width: '80px' }} />
+          <ArrowBlue style={{ width: "80px" }} />
         )}
       </TaglineContainer>
       <Center>{children}</Center>
       {note && <aside>{note}</aside>}
     </DisplayBox>
-  )
-}
+  );
+};
 
 export const CTAContainer = styled.div`
   display: flex;
   margin-top: ${({ mtop }) => mtop || `${HEADER_ALLOWANCE / 1.5}vh`};
 
   > button {
-    margin-left: ${({ alignRight }) => (alignRight ? 'auto' : 'initial')};
+    margin-left: ${({ alignRight }) => (alignRight ? "auto" : "initial")};
   }
-`
+`;
