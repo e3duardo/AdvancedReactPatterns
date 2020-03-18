@@ -27,7 +27,6 @@ const goToGithub = () => {
 export const Home = () => (
   <StyledContainer>
     <Hero style={{ width: "90%" }} />
-    ss
     {/* <CTAContainer>
       <Button text='Get started' primary />
       <Button
