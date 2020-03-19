@@ -67,6 +67,9 @@
 }
 
 /* Clap Icon */
+.mediumIcon {
+  fill: #27ae60;
+}
 .icon {
   width: 40px;
   fill: none;

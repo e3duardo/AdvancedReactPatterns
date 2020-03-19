@@ -34,6 +34,9 @@
 }
 
 /* icon */
+.mediumIcon {
+  fill: #ff6633;
+}
 .icon {
   stroke: #ff6633;
 }
