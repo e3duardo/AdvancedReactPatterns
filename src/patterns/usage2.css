@@ -71,7 +71,7 @@
 }
 .resetBtn {
   border-bottom: 1px solid #bdc3c7;
-  color: "#27ae60";
+  color: "#ff6633";
   margin-top: 30px;
   padding: 10px 20px;
   border-radius: 20px;
@@ -81,4 +81,5 @@
 }
 .resetMsg {
   color: black;
+  font-size: 0.8rem;
 }

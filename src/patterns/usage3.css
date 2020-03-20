@@ -1,20 +1,21 @@
 /** total **/
 
 .total {
-  color: #896eaf;
+  color: #0677e6;
 }
 
 /* count */
 .count {
-  background: #896eaf;
+  background: #0677e6;
 }
 
 /* clap */
 .clap {
-  border: 1px solid #896eaf;
+  border: 1px solid #0677e6;
+  margin-left: 50px;
 }
 .clap:hover {
-  border: 1px solid #896eaf;
+  border: 1px solid #0677e6;
 }
 .clap:hover:after {
   animation: shockwave 1s ease-in infinite;
@@ -22,26 +23,26 @@
 @keyframes shockwave {
   0% {
     transform: scale(1);
-    box-shadow: 0 0 2px #896eaf;
+    box-shadow: 0 0 2px #0677e6;
     opacity: 1;
   }
   100% {
     transform: scale(1);
     opacity: 0;
-    box-shadow: 0 0 50px #473561, inset 0 0 10px #896eaf;
+    box-shadow: 0 0 50px #033f79, inset 0 0 10px #0677e6;
   }
 }
 
 /* icon */
 .mediumIcon {
-  fill: #896eaf;
+  fill: #0677e6;
 }
 .icon {
-  stroke: #896eaf;
+  stroke: #0677e6;
 }
 
 .icon.checked {
-  fill: #896eaf;
+  fill: #0677e6;
 }
 
 .cupContainer {
@@ -70,7 +71,7 @@
 }
 .resetBtn {
   border-bottom: 1px solid #bdc3c7;
-  color: "#896eaf";
+  color: "#0677E6";
   margin-top: 30px;
   padding: 10px 20px;
   border-radius: 20px;
