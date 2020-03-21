@@ -162,16 +162,17 @@ const reducer = ({ count, countTotal }, { type, payload }) => {
       break;
   }
 };
+
 const useClapState = (initialState = INITIAL_STATE) => {
   const userInitialState = useRef(initialState);
   const [clapState, dispatch] = useReducer(reducer, initialState);
-  const { count, countTotal } = clapState;
+  const { count } = clapState;
   const updateClapState = () => dispatch({ type: "clap" });
   const resetRef = useRef(0);
   const prevCount = usePrevious(count);
   const reset = useCallback(() => {
     if (prevCount !== count) {
-      dispatch({ reset: "reset", payload: userInitialState.current });
+      dispatch({ type: "reset", payload: userInitialState.current });
       resetRef.current++;
     }
   }, [prevCount, count]);
