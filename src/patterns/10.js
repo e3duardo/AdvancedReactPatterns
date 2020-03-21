@@ -147,6 +147,7 @@ const callFnsInSequence = (...fns) => (...args) => {
  */
 const MAXIMUM_USER_CLAP = 50;
 const internalReducer = ({ count, countTotal }, { type, payload }) => {
+  console.log(type, payload);
   switch (type) {
     case "clap":
       return {
@@ -169,10 +170,8 @@ const useClapState = (initialState = INITIAL_STATE, reducer = internalReducer) =
   const resetRef = useRef(0);
   const prevCount = usePrevious(count);
   const reset = useCallback(() => {
-    if (prevCount !== count) {
-      dispatch({ type: "reset", payload: userInitialState.current });
-      resetRef.current++;
-    }
+    dispatch({ type: "reset", payload: userInitialState.current });
+    resetRef.current++;
   }, [prevCount, count]);
 
   const getTogglerProps = ({ onClick, ...otherProps }) => ({
@@ -201,8 +200,8 @@ const useClapState = (initialState = INITIAL_STATE, reducer = internalReducer) =
 
 useClapState.reducer = internalReducer;
 useClapState.types = {
-  'clap': 'clap',
-  'reset': 'reset'
+  clap: 'clap',
+  reset: 'reset'
 }
 
 /*
@@ -280,19 +279,17 @@ const userInitialState = {
 };
 
 const Usage = () => {
-  const reducer = ({ count, countTotal }, { type, payload }) => {
-    switch (type) {
-      case 'clap':
-        return {
-          count: count + 2,
-          countTotal: countTotal + 2,
-          isClicked: true
-        }
-      case 'reset':
-        return payload
+  const [timesClapped, setTimeClapped] = useState(0);
+  const isClappedTooMuch = timesClapped >= 7;
+  const reducer = (state, action) => {
+
+    if (action.type === useClapState.types.clap && isClappedTooMuch) {
+      return state;
     }
-    return state;
+    //setTimeClapped(timesClapped+1);
+    return useClapState.reducer(state, action);
   };
+
   const {
     clapState,
     updateClapState,
@@ -317,6 +314,7 @@ const Usage = () => {
   const [uploadingReset, setUpload] = useState(false);
   useEffectAfterMount(() => {
     setUpload(true);
+    setTimeClapped(0);
 
     const id = setTimeout(() => {
       setUpload(false);
@@ -324,6 +322,10 @@ const Usage = () => {
 
     return () => clearTimeout(id);
   }, [resetDep]);
+
+  const handleClick = () => {
+    setTimeClapped(t => t + 1);
+  }
 
   return (
     <div>
@@ -333,7 +335,7 @@ const Usage = () => {
         handleClick={updateClapState}
         // className={userBlueStyles.clap}
         {...getTogglerProps({
-          onClick: () => console.log("clicked!!!")
+          onClick: handleClick
         })}
       >
         <ClapIcon
@@ -358,10 +360,13 @@ const Usage = () => {
           Reset
         </button>
         <pre className={userBlueStyles.resetMsg}>
-          {JSON.stringify({ count, countTotal, isClicked })}
+          {JSON.stringify({ timesClapped, count, countTotal, isClicked })}
         </pre>
         <pre className={userBlueStyles.resetMsg}>
           {uploadingReset ? `uploading reset ${resetDep} ...` : ""}
+        </pre>
+        <pre style={{ color: 'red' }}>
+          {isClappedTooMuch ? `You have clappled too much. Dont't be so generous!` : ""}
         </pre>
       </section>
     </div>
